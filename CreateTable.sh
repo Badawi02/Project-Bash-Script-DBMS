@@ -34,7 +34,7 @@ while [ true ]; do
   PK=""
   sep=":"
   lsep="\n"
-  hdata="ColName"$sep"Type"$sep"Null"$sep"key"
+  hdata="ColName"$sep"Type"$sep"key"
   temp=""
 
   while [ $counter -le $coln ]; do
@@ -61,40 +61,24 @@ while [ true ]; do
       esac
     done
 
-    echo "Column No $counter can be (Null):"
-    select N in "yes" "no"; do
-      case $N in
-      yes)
-        colnull="yes"
-        break
-        ;;
-      no)
-        colnull="no"
-        break
-        ;;
-      *) echo "invalid choice, pick again " ;;
-      esac
-    done
-
-
     if [[ $PK == "" ]]; then
       echo "Make this col a PrimaryKey ? "
       select var in "yes" "no"; do
         case $var in
         yes)
           PK="PK"
-          hdata+=$lsep$colname$sep$coltype$sep$colnull$sep$PK
+          hdata+=$lsep$colname$sep$coltype$sep$PK
           break
           ;;
         no)
-          hdata+=$lsep$colname$sep$coltype$sep$colnull$sep""
+          hdata+=$lsep$colname$sep$coltype$sep""
           break
           ;;
         *) echo "Wrong Choice, pick again " ;;
         esac
       done
     else
-      hdata+=$lsep$colname$sep$coltype$sep$colnull$sep""
+      hdata+=$lsep$colname$sep$coltype$sep""
     fi
 
 

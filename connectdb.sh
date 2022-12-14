@@ -2,10 +2,19 @@
 
 while [ true ]; do
     if [[ $# == 0 ]]; then
-        ls -l databases | grep '^d'
-        echo "------------------------------------------------------"
-        read -p "Enter the database name : " dbname
-        
+        if [ -d databases ];then
+            ls -l databases | grep '^d' 2>/dev/null
+            echo "------------------------------------------------------"
+            read -p "Enter the database name : " dbname
+        else
+            echo ">>> No Databases created <<<"
+            select choice in "Try again" "Go back to main menu "; do
+                case $REPLY in
+                1) . ./connectdb.sh ;;
+                2) . ./maindb.sh ;;
+                esac
+            done
+        fi
     else
         dbname=$1
     fi
@@ -18,7 +27,7 @@ while [ true ]; do
                 . ./CreateTable.sh $dbname
                 ;;
             2)
-                ls databases/$dbname
+                . ./listtables.sh $dbname
                 ;;
             3)
                 . ./insertintotable.sh $dbname
