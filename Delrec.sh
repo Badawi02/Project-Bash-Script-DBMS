@@ -40,7 +40,8 @@ while [ true ]; do
                             select choice in 'Confirm deleting record' 'Go back to table menu'; do
                                 case $REPLY in
                                 1)
-                                    sed -i "$matching"d ./databases/$1/$name
+                                    RECORDN=$(awk 'BEGIN{FS=":"}{for( i=1;i<=NF;i++) if($i=="'$colv'" && i=="'$FIELDN'") {print NR}}' ./databases/$1/$name)
+                                    sed -i "$RECORDN"d ./databases/$1/$name
                                     echo ">>> Record Deleted <<<"
                                     . ./connectdb.sh $1
                                     ;;
