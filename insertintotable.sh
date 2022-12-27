@@ -93,7 +93,7 @@ for ((i = 2; i <= $coln; i++)); do
       done
     fi
 
-    #inserting rows into database
+    #inserting rows into table
     if [[ $i == $coln ]]; then
       row=$row$data
     else

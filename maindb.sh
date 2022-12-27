@@ -12,7 +12,7 @@ select choice in 'Create Database' 'List Database' 'Conncet to Database' 'Drop D
         ;;
     2)
         . ./listdb.sh
-        ;;
+        ;;s
     3)
         . ./connectdb.sh
         ;;

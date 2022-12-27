@@ -5,9 +5,9 @@ while [ true ]; do
 
     if [[ -f ./databases/$1/$tblname ]]; then
         echo "-----------------------------"
-        awk 'BEGIN{FS=":"}{ if(NR==1) {print $0}}' ./databases/$1/$name
+        awk 'BEGIN{FS=":"}{ if(NR==1) {print $0}}' ./databases/$1/$tblname
         echo "-----------------------------"
-        awk 'BEGIN{FS=":"}{ if(NR>1) {print $0}}' ./databases/$1/$name
+        awk 'BEGIN{FS=":"}{ if(NR>1) {print $0}}' ./databases/$1/$tblname
         echo "-----------------------------"
         . ./connectdb.sh
     else

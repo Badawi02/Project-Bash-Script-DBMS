@@ -58,7 +58,7 @@ while [ true ]; do
                           read -p "Enter valid Primary key : " NewV
 
                         else
-                          duplicated=$(awk -F':' '{if('$NewV'==$('$HN'-1)) {print $('$HN'-1);exit}}' ./databases/$1/$tblname)
+                          duplicated=$(awk -F':' '{if('$NewV'==$('$FIELDN')) {print $('$FIELDN');exit}}' ./databases/$1/$tblname)
                           if ! [[ $duplicated -eq 0 ]]; then
                             echo ">>> Error!PK already exists <<<"
                             read -p "Enter unique Primary key : " NewV
@@ -73,7 +73,7 @@ while [ true ]; do
                     ;;
                   *)
                     echo ">>> Error! Invalid data type! <<<"
-                    read -p "enter valid data type (int)" NewV
+                    read -p "Enter valid data type (int)" NewV
                     ;;
                   esac
                 done
@@ -124,7 +124,7 @@ while [ true ]; do
               echo ">>> Row Updated Successfully <<<"
               . ./connectdb.sh $1
             else
-              echo "not match with $colv"
+              echo ">>> Not match with $colv <<<"
               select choice in 'Insert new column value ?' 'Go back to table menu'; do
                 case $REPLY in
                 1) break ;;

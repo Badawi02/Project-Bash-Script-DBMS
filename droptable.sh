@@ -26,7 +26,7 @@ while [ true ]; do
                break
           fi
      else
-          echo "table doesnt exist"
+          echo ">>> Table doesn't exist <<<"
           select x in "Try again?" "Go to table menu"; do
                case $REPLY in
                1) . ./droptable.sh $1 ;;
